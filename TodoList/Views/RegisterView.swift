@@ -21,6 +21,15 @@ struct RegisterView: View {
             
             
             VStack{
+                
+                if !registerViewModel.errorMessage.isEmpty {
+                    Text(registerViewModel.errorMessage)
+                        .foregroundColor(.red)
+                        .font(.body)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding(.horizontal)
+                }
    
                 
                 RoundedRectangle(cornerRadius: 25)
@@ -93,7 +102,7 @@ struct RegisterView: View {
                 
                 
                 BigButtonView(backgroundColor: .accentColor, title: "Register") {
-                    // Attemp Registation
+                    registerViewModel.register()
                 }
 
             }

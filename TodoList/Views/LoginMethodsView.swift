@@ -20,6 +20,7 @@ struct LoginMethodsView: View {
                         .bold()
                         .foregroundColor(.primary)
                 }
+                .shadow(radius: 10)
             
             
             Spacer()
@@ -32,7 +33,9 @@ struct LoginMethodsView: View {
                         .foregroundColor(.primary)
                         .aspectRatio(contentMode: .fit)
                         .padding(10)
+                    
                 }
+                .shadow(radius: 10)
             
             Spacer()
                 
@@ -44,6 +47,7 @@ struct LoginMethodsView: View {
                         .aspectRatio(contentMode: .fit)
                         
                 }
+            
                 
             Spacer()
             Circle()

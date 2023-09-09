@@ -9,7 +9,27 @@ import SwiftUI
 
 struct TodoListView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            
+            VStack{
+                
+                
+                
+            }
+            .navigationTitle("Todo List 📝")
+            .toolbar {
+                Button {
+                    //Action
+                } label: {
+                    Image(systemName: "plus")
+                }
+                
+               
+
+            }
+            
+            
+        }
     }
 }
 

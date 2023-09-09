@@ -13,7 +13,7 @@ class LoginViewViewModel : ObservableObject {
     
     @Published var email : String = ""
     @Published var password : String = ""
-    @Published var errorMesssage: String = ""
+    @Published var errorMessage: String = ""
     
     init(){
         
@@ -21,15 +21,18 @@ class LoginViewViewModel : ObservableObject {
     
     func login(){
         if validate() {
-            print("Validation Successful")
             
-            Auth.auth().createUser(withEmail: email, password: password) { authResult, firebaseError in
-                if let error = firebaseError {
-                    self.errorMesssage = error.localizedDescription
+            errorMessage = ""
+            
+            Auth.auth().signIn(withEmail: email, password: password) { authDataResult, error in
+                if let err = error {
+                    self.errorMessage = err.localizedDescription
                     return
                 }
                 
-                print(authResult?.description)
+                print(authDataResult?.description as Any)
+                
+                
             }
             
             
@@ -42,13 +45,13 @@ class LoginViewViewModel : ObservableObject {
         
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         if !NSPredicate(format: "SELF matches %@", emailRegEx).evaluate(with: email){
-            errorMesssage = "Invalid email"
+            errorMessage = "Invalid Email Address"
             return false
         }
         
         let passwordRegEx = "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$"
         if !NSPredicate(format: "SELF matches %@", passwordRegEx).evaluate(with: password) {
-            errorMesssage = "Password must contain atleast one uppercase, one lowercase letter, one digit and one symbol(!@#$&*)"
+            errorMessage = "Password must contain atleast one uppercase, one lowercase letter, one digit and one symbol(!@#$&*)"
             return false
         }
 

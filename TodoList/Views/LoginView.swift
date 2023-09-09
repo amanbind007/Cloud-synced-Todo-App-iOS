@@ -28,8 +28,8 @@ struct LoginView: View {
             
             VStack{
                 
-                if !loginViewModel.errorMesssage.isEmpty {
-                    Text(loginViewModel.errorMesssage)
+                if !loginViewModel.errorMessage.isEmpty {
+                    Text(loginViewModel.errorMessage)
                         .foregroundColor(.red)
                         .font(.body)
                         .lineLimit(nil)
@@ -94,12 +94,13 @@ struct LoginView: View {
                 .shadow(radius: 10)
                 
                 RoundedRectangle(cornerRadius: 25)
-                    .fill(.thickMaterial)
+                    .fill(.background)
                     .frame(height: 50)
-                    .shadow(radius: 5)
+                    .shadow(radius: 15)
                     .overlay {
                         LoginMethodsView()
                             .padding(3)
+                        
                         
                     }
                     .padding()

@@ -8,10 +8,40 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @StateObject var mainViewModel = MainViewViewModel()
+    
     var body: some View {
+        
         NavigationView {
-            LoginView(loginViewModel: LoginViewViewModel())
+            if mainViewModel.isSignedIn, !mainViewModel.currentUserId.isEmpty{
+                
+                TabView {
+                    
+                    TodoListView()
+                        .tabItem {
+                            VStack{
+                                Image(systemName: "house.fill")
+                                Text("Home")
+                            }
+                        }
+                    
+                    ProfileView()
+                        .tabItem {
+                            VStack{
+                                Image(systemName: "person.fill")
+                                Text("Profile")
+                            }
+                        }
+                }
+            }
+            else {
+                LoginView(loginViewModel: LoginViewViewModel())
+                
+            }
         }
+        
+        
        
     }
 }
