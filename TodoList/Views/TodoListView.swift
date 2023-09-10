@@ -8,33 +8,50 @@
 import SwiftUI
 
 struct TodoListView: View {
+    
+    private let userId: String
+    
+    @StateObject var  todoListViewModel = TodoListViewViewModel()
+    
+    init(userId: String) {
+        self.userId = userId
+        
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Pacifico", size: 40)!, .strokeColor: Color.pink, .foregroundColor: UIColor.systemPink]
+    }
+    
     var body: some View {
         NavigationView {
             
-            VStack{
+            VStack {
                 
                 
                 
             }
-            .navigationTitle("Todo List 📝")
+            .navigationTitle(
+                Text("Todo List 📝")
+                    .font(Font.custom("Pacifico", size: 50))
+                
+            )
             .toolbar {
-                Button {
-                    //Action
-                } label: {
-                    Image(systemName: "plus")
+                ToolbarItem {
+                    Button {
+                        //Action
+                        todoListViewModel.sheetIsPresented.toggle()
+                        
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
-                
-               
-
             }
-            
-            
+            .sheet(isPresented: $todoListViewModel.sheetIsPresented) {
+                NewItemView()
+            }  
         }
     }
 }
 
 struct TodoListView_Previews: PreviewProvider {
     static var previews: some View {
-        TodoListView()
+        TodoListView(userId: "")
     }
 }
