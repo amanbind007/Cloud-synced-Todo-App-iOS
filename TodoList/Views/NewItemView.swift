@@ -78,7 +78,7 @@ struct NewItemView: View {
         }
         .padding()
         .alert(newItemViewModel.errorMessage, isPresented: $newItemViewModel.showAlert) {
-            
+            //Action
         }
     }
 }
