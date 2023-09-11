@@ -11,6 +11,8 @@ class NewItemViewViewModel :ObservableObject {
     
     @Published var title = ""
     @Published var dueDate = Date()
+    @Published var errorMessage = ""
+    @Published var showAlert = false
     
     
     init(){
@@ -19,6 +21,13 @@ class NewItemViewViewModel :ObservableObject {
     
     
     func save(){
+        
+        if(title.trimmingCharacters(in: .whitespaces).isEmpty) {
+            errorMessage = "Title cannot be Empty"
+            showAlert = true
+            return
+        }
+        
         
     }
 }

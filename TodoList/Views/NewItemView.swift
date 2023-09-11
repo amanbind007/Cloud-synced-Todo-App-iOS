@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NewItemView: View {
     
+    @Binding var sheetIsPresented : Bool
     @StateObject var newItemViewModel = NewItemViewViewModel()
     
     var body: some View {
@@ -29,7 +30,6 @@ struct NewItemView: View {
                     .overlay {
                         TextField("Title", text: $newItemViewModel.title)
                             .padding()
-
                     }
             } header: {
                 HStack{
@@ -40,18 +40,16 @@ struct NewItemView: View {
                         .offset(x:8, y:20)
                     Spacer()
                 }
-                    
+                
             }
-            
-            
             
             Spacer()
             
             Section {
                 DatePicker("Due date", selection: $newItemViewModel.dueDate, in: Date()...)
-                        .datePickerStyle(.graphical)
-                        .tint(.pink)
-                        
+                    .datePickerStyle(.graphical)
+                    .tint(.pink)
+                
             } header: {
                 HStack{
                     Text("Due Date")
@@ -61,27 +59,36 @@ struct NewItemView: View {
                         .offset(x:8, y:35)
                     Spacer()
                 }
-                    
-            }
-            
-                    
                 
-            Spacer()
-                                
-            BigButtonView(backgroundColor: .pink, title: "Add item") {
-                    newItemViewModel.save()
             }
 
-                    
-
+            Spacer()
             
+            BigButtonView(backgroundColor: .pink, title: "Add item") {
+                
+                newItemViewModel.save()
+                
+                if !newItemViewModel.title.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty {
+                    sheetIsPresented = false
+                }
+                
+                
+                
+            }
         }
         .padding()
+        .alert(newItemViewModel.errorMessage, isPresented: $newItemViewModel.showAlert) {
+            
+        }
     }
 }
 
 struct NewItemView_Previews: PreviewProvider {
     static var previews: some View {
-        NewItemView()
+        NewItemView(sheetIsPresented: Binding(get: {
+            return true
+        }, set: { _ in
+            
+        }))
     }
 }

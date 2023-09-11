@@ -29,8 +29,6 @@ struct TodoListView: View {
             }
             .navigationTitle(
                 Text("Todo List 📝")
-                    .font(Font.custom("Pacifico", size: 50))
-                
             )
             .toolbar {
                 ToolbarItem {
@@ -44,7 +42,7 @@ struct TodoListView: View {
                 }
             }
             .sheet(isPresented: $todoListViewModel.sheetIsPresented) {
-                NewItemView()
+                NewItemView(sheetIsPresented: $todoListViewModel.sheetIsPresented)
             }  
         }
     }
