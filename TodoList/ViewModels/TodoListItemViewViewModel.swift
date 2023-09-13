@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import FirebaseAuth
+import FirebaseFirestore
 
 class TodoListItemViewViewModel : ObservableObject {
     
@@ -13,7 +15,18 @@ class TodoListItemViewViewModel : ObservableObject {
         
     }
     
-    func toggleIsDone(){
+    func toggleIsDone(item: TodoItem){
+        
+        if let user = Auth.auth().currentUser {
+            let userID = user.uid
+            let db = Firestore.firestore()
+            
+            var itemCopy = item
+            itemCopy.setDone(!item.isDone)
+            
+            db.collection("User").document(userID).collection("Todos").document(itemCopy.id).setData(itemCopy.asDisctionary())
+        }
+        
         
     }
     

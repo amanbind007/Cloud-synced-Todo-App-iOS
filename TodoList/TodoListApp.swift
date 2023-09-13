@@ -17,6 +17,7 @@ struct TodoListApp: App {
     
     init(){
         FirebaseApp.configure()
+        
         let userDefaults = UserDefaults.standard
         if (!userDefaults.bool(forKey: "hasRunBefore")) {
             print("The app is launching for the first time. Setting UserDefaults...")

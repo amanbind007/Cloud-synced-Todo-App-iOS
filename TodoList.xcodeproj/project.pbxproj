@@ -11,6 +11,7 @@
 		5C581F0B2AAE2476006F94D1 /* TodoListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C581F0A2AAE2476006F94D1 /* TodoListViewViewModel.swift */; };
 		5C581F0D2AB07C8A006F94D1 /* TodoListItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C581F0C2AB07C8A006F94D1 /* TodoListItemViewViewModel.swift */; };
 		5C581F0F2AB09F78006F94D1 /* LeckerliOne.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5C581F0E2AB09F77006F94D1 /* LeckerliOne.otf */; };
+		5C581F142AB1C426006F94D1 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5C581F132AB1C426006F94D1 /* FirebaseStorage */; };
 		5C82D4D62AAAFE21006D626A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C82D4D52AAAFE21006D626A /* HeaderView.swift */; };
 		5C82D4DA2AAB0DCF006D626A /* BigButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C82D4D92AAB0DCF006D626A /* BigButtonView.swift */; };
 		5C82D4DC2AAB6344006D626A /* LoginMethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C82D4DB2AAB6344006D626A /* LoginMethodsView.swift */; };
@@ -75,6 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CD739432AA201A200F7A0AF /* FirebaseAuth in Frameworks */,
+				5C581F142AB1C426006F94D1 /* FirebaseStorage in Frameworks */,
 				5CD739452AA201A200F7A0AF /* FirebaseFirestore in Frameworks */,
 				5CD739472AA201A200F7A0AF /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -83,11 +85,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C581F122AB1C426006F94D1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5CD739252AA1F3A300F7A0AF = {
 			isa = PBXGroup;
 			children = (
 				5CD739302AA1F3A300F7A0AF /* TodoList */,
 				5CD7392F2AA1F3A300F7A0AF /* Products */,
+				5C581F122AB1C426006F94D1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -185,6 +195,7 @@
 				5CD739422AA201A200F7A0AF /* FirebaseAuth */,
 				5CD739442AA201A200F7A0AF /* FirebaseFirestore */,
 				5CD739462AA201A200F7A0AF /* FirebaseFirestoreSwift */,
+				5C581F132AB1C426006F94D1 /* FirebaseStorage */,
 			);
 			productName = TodoList;
 			productReference = 5CD7392E2AA1F3A300F7A0AF /* TodoList.app */;
@@ -482,6 +493,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5C581F132AB1C426006F94D1 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CD739412AA201A100F7A0AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		5CD739422AA201A200F7A0AF /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5CD739412AA201A100F7A0AF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

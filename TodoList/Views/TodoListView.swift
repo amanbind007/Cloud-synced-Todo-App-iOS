@@ -19,6 +19,7 @@ struct TodoListView: View {
         self.userId = userId
         
         UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Pacifico", size: 40)!, .strokeColor: Color.pink, .foregroundColor: UIColor.systemPink]
+        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Pacifico", size: 40)!, .strokeColor: Color.pink, .foregroundColor: UIColor.systemPink]
         
         self._items = FirestoreQuery(collectionPath: "User/\(userId)/Todos")
         
