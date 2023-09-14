@@ -13,7 +13,6 @@
 		5C581F0F2AB09F78006F94D1 /* LeckerliOne.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5C581F0E2AB09F77006F94D1 /* LeckerliOne.otf */; };
 		5C581F142AB1C426006F94D1 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5C581F132AB1C426006F94D1 /* FirebaseStorage */; };
 		5C581F162AB20D50006F94D1 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C581F152AB20D50006F94D1 /* ImagePickerView.swift */; };
-		5C581F1A2AB2F6BD006F94D1 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C581F192AB2F6BD006F94D1 /* NetworkMonitor.swift */; };
 		5C82D4D62AAAFE21006D626A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C82D4D52AAAFE21006D626A /* HeaderView.swift */; };
 		5C82D4DA2AAB0DCF006D626A /* BigButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C82D4D92AAB0DCF006D626A /* BigButtonView.swift */; };
 		5C82D4DC2AAB6344006D626A /* LoginMethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C82D4DB2AAB6344006D626A /* LoginMethodsView.swift */; };
@@ -47,7 +46,6 @@
 		5C581F0C2AB07C8A006F94D1 /* TodoListItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListItemViewViewModel.swift; sourceTree = "<group>"; };
 		5C581F0E2AB09F77006F94D1 /* LeckerliOne.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LeckerliOne.otf; sourceTree = "<group>"; };
 		5C581F152AB20D50006F94D1 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
-		5C581F192AB2F6BD006F94D1 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		5C82D4D52AAAFE21006D626A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		5C82D4D92AAB0DCF006D626A /* BigButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButtonView.swift; sourceTree = "<group>"; };
 		5C82D4DB2AAB6344006D626A /* LoginMethodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMethodsView.swift; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 				5C581F0A2AAE2476006F94D1 /* TodoListViewViewModel.swift */,
 				5C581F0C2AB07C8A006F94D1 /* TodoListItemViewViewModel.swift */,
 				5C581F152AB20D50006F94D1 /* ImagePickerView.swift */,
-				5C581F192AB2F6BD006F94D1 /* NetworkMonitor.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -285,7 +282,6 @@
 				5C82D4DE2AAC7460006D626A /* Extensions.swift in Sources */,
 				5CD739502AA205E500F7A0AF /* NewItemView.swift in Sources */,
 				5C82D4D62AAAFE21006D626A /* HeaderView.swift in Sources */,
-				5C581F1A2AB2F6BD006F94D1 /* NetworkMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
