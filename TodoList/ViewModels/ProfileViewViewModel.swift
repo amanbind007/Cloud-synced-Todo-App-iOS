@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 class ProfileViewViewModel : ObservableObject {
     
@@ -41,8 +42,54 @@ class ProfileViewViewModel : ObservableObject {
         }
     }
     
-    func logout(){
+    
+    func uploadProfileImage(image: UIImage){
+        guard let userId = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        
+        let db = Firestore.firestore()
+        fetchUser()
+
+        if let imageData = image.jpegData(compressionQuality: 0.5) {
+            let storage = Storage.storage()
+            let storageReference = storage.reference()
+            let profileImageRef = storageReference.child("profileImages/\(userId).jpg")
+            
+            profileImageRef.putData(imageData, metadata: nil) { (_, error) in
+                if let error = error {
+                    print("Error uploading image: \(error.localizedDescription)")
+                } else {
+                    // Image uploaded successfully, get the download URL
+                    profileImageRef.downloadURL { (url, error) in
+                        if let downloadURL = url {
+                            // Update the user's profile with the new image URL
+                            if let user = self.user {
+                                var userCopy = User(id: user.id, name: user.name, email: user.email, joinedOn: user.joinedOn, profile: downloadURL.absoluteString)
+                                
+                                db.collection("User").document(userId).setData(userCopy.asDisctionary())
+                            }
+                            
+                        } else if let error = error {
+                            print("Error getting download URL: \(error.localizedDescription)")
+                        }
+                    }
+                }
+            }
+        }
+        
+        
         
     }
-
+    
+    func logout(){
+        do {
+            try Auth.auth().signOut()
+        }
+        catch{
+            print(error)
+        }
+    }
+    
 }

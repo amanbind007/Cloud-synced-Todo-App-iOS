@@ -24,14 +24,7 @@ class TodoListViewViewModel: ObservableObject{
             
             let userID = currentUser.uid
             db.collection("User").document(userID).collection("Todos").document(todoListItemID).delete()
-            //            db.collection("User").document(userID).collection("Todos").document(todoListItemID).delete { error in
-            //                if let err = error {
-            //                    print(error?.localizedDescription as Any)
-            //                }
-            //                else{
-            //                    print("Deletion Successful")
-            //                }
-            //            }
+
         }
         
     }

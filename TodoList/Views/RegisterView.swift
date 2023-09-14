@@ -16,7 +16,7 @@ struct RegisterView: View {
     var body: some View {
         
         VStack{
-            HeaderView(offsetForText: -170, offsetForStack: -130, title: "Register", subtitle: "Start Organizing Todo", color: .mint)
+            HeaderView(offsetForText: -170, offsetForStack: -130, title: "Register", subtitle: "Start Organizing Todo", color: .pink)
             
             
             

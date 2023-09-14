@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -13,17 +14,16 @@ struct ProfileView: View {
     
     @StateObject var profileViewModel = ProfileViewViewModel()
     
-    
+    @State var isImagePickerPresented = false
+    @State private var selectedImage: UIImage?
     
     
     var body: some View {
         
-        
-        
         VStack {
             
             if let user = profileViewModel.user {
-                //            if profileViewModel.user == nil {
+                
                 VStack {
                     ZStack(alignment: .top) {
                         Rectangle()
@@ -31,8 +31,7 @@ struct ProfileView: View {
                             .edgesIgnoringSafeArea(.top)
                             .frame(height: 100)
                         
-                        
-                        AsyncImage(url: URL(string: "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/2560px-Flag_of_India.svg.pn")) { image in
+                        AsyncImage(url: URL(string: user.profile)) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -40,6 +39,9 @@ struct ProfileView: View {
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
                                 .shadow(radius: 10)
+                                .onTapGesture {
+                                    isImagePickerPresented.toggle()
+                                }
                         } placeholder: {
                             ZStack{
                                 
@@ -47,30 +49,25 @@ struct ProfileView: View {
                                     .frame(width: 180, height: 180)
                                     .foregroundColor(.white)
                                 
-                                
                                 Image("Profile")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 180, height: 180)
                                     .clipShape(Circle())
-                                
                                     .overlay(
                                         Circle()
                                             .stroke(Color.white, lineWidth: 4)
                                     )
                                     .shadow(radius: 10)
-                                
-                                
+                                    .onTapGesture {
+                                        isImagePickerPresented.toggle()
+                                    }
                             }
-                            
-                            
                         }
                         .offset(y:10)
-                        
-                        
                     }
-                    
                 }
+                
                 Spacer()
                 
                 VStack(alignment: .leading){
@@ -79,19 +76,12 @@ struct ProfileView: View {
                         .foregroundColor(.pink)
                         .offset(x: 10, y:22)
                     RoundedRectangle(cornerRadius: 30)
-                        .fill(.white)
-                        .foregroundColor(.white)
-                        .frame(height: 61)
+                        .frame(height: 60)
+                        .foregroundStyle(.thickMaterial)
                         .overlay {
-                            RoundedRectangle(cornerRadius: 30)
-                                .foregroundColor(.white)
-                                .overlay {
-                                    Text(user.name)
-                                        .font(.largeTitle)
-                                        .bold()
-                                    
-                                }
-                            
+                            Text(user.name)
+                                .font(.largeTitle)
+                                .bold()
                         }
                         .clipped()
                         .shadow(color: .pink, radius: 10)
@@ -104,19 +94,11 @@ struct ProfileView: View {
                         .foregroundColor(.pink)
                         .offset(x: 10, y:22)
                     RoundedRectangle(cornerRadius: 30)
-                        .fill(.white)
-                        .foregroundColor(.white)
-                        .frame(height: 61)
+                        .frame(height: 60)
+                        .foregroundStyle(.thickMaterial)
                         .overlay {
-                            RoundedRectangle(cornerRadius: 30)
-                                .foregroundColor(.white)
-                                .overlay {
-                                    Text(user.email)
-                                        .font(.title2)
-                                    
-                                }
-                            
-                            
+                            Text(user.email)
+                                .font(.title2)
                         }
                         .clipped()
                         .shadow(color: .pink, radius: 10)
@@ -128,24 +110,15 @@ struct ProfileView: View {
                         .foregroundColor(.pink)
                         .offset(x: 10, y:22)
                     RoundedRectangle(cornerRadius: 30)
-                        .fill(.white)
-                        .foregroundColor(.white)
-                        .frame(height: 61)
+                        .frame(height: 60)
+                        .foregroundStyle(.thickMaterial)
                         .overlay {
-                            RoundedRectangle(cornerRadius: 30)
-                                .foregroundColor(.white)
-                                .overlay {
-                                    Text(Date(timeIntervalSince1970: user.joinedOn).formatted(date: .abbreviated, time: .shortened))
-                                        .font(.title2)
-                                        
-                                    
-                                }
-                            
+                            Text(Date(timeIntervalSince1970: user.joinedOn).formatted(date: .abbreviated, time: .shortened))
+                                .font(.title2)
                             
                         }
                         .clipped()
                         .shadow(color: .pink, radius: 10)
-                    
                     
                 }
                 .padding()
@@ -156,25 +129,26 @@ struct ProfileView: View {
                     profileViewModel.logout()
                 }
                 
-                
-                
-                
             }else{
                 Text("Profile Loading...")
                     .font(Font.custom("Pacifico", size: 35))
                     .foregroundColor(.pink)
-                
             }
             
         }
         .onAppear{
             profileViewModel.fetchUser()
         }
-        
-        
+        .sheet(isPresented: $isImagePickerPresented) {
+            ImagePickerView(selectedImage: $selectedImage)
+                .onDisappear {
+                    if let image = selectedImage {
+                        profileViewModel.uploadProfileImage(image: image)
+                    }
+                }
+        }
         
     }
-    
     
 }
 
